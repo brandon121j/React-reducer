@@ -9,13 +9,15 @@ function Todo() {
 
 	const {
 		todoItem: { todo },
+        index,
+        handleDelete
 	} = useContext(TodoContext);
 
 	return (
 		<div>
 			<span>{todo}</span>
 			<button>Done</button>
-			<button>Delete</button>
+			<button onClick={() => handleDelete(index)}>Delete</button>
 		</div>
 	);
 }

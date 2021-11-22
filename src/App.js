@@ -29,16 +29,37 @@ function App() {
 
   function showTodoInput() {
     return (
-    <TodoInputContext.Provider value={{}}>
+    <TodoInputContext.Provider value={{ addTodo }}>
       <TodoInput/>
     </TodoInputContext.Provider>
     )
   }
 
+  function addTodo(todo) {
+  
+    let newTodoArray = [
+      ...todoArray, 
+      {
+      id: uuidv4(),
+      todo,
+      isCompleted: false
+    }
+  ];
+
+    setTodoArray(newTodoArray);
+  }
+
+  function handleDelete(index) {
+    console.log(index)
+  }
+
   function showTodo() {
     return todoArray.map((item, index) => {
       return (
-      <TodoContext.Provider key={ item.id } value={{ todoItem: item }}>
+      <TodoContext.Provider 
+        key={ item.id } 
+        value={{ todoItem: item, index, handleDelete }}
+      >
         <Todo/>
       </TodoContext.Provider>
       )

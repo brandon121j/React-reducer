@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { TodoInputContext } from '../context/todoContext';
 
 function TodoInput() {
 	const [todo, setTodo] = useState('');
 
+    let { addTodo } = useContext(TodoInputContext)
+
 	function handleTodoSubmit(e) {
 		e.preventDefault();
+
+        addTodo(todo);
 	}
 
 	return (
