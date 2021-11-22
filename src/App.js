@@ -50,7 +50,11 @@ function App() {
   }
 
   function handleDelete(index) {
-    console.log(index)
+    let newArray = Object.assign([], todoArray);
+
+    newArray.splice(index, 1);
+
+    setTodoArray(newArray)
   }
 
   function showTodo() {
