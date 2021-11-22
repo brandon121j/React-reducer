@@ -57,12 +57,20 @@ function App() {
     setTodoArray(newArray)
   }
 
+  function handleDone(index) {
+    let newArray = [...todoArray];
+
+    newArray[index].isCompleted = !newArray[index].isCompleted;
+
+    setTodoArray(newArray)
+  }
+
   function showTodo() {
     return todoArray.map((item, index) => {
       return (
       <TodoContext.Provider 
         key={ item.id } 
-        value={{ todoItem: item, index, handleDelete }}
+        value={{ todoItem: item, index, handleDelete, handleDone }}
       >
         <Todo/>
       </TodoContext.Provider>

@@ -1,22 +1,21 @@
 import React, { useContext } from 'react';
 import { TodoContext } from '../context/todoContext';
-import Child1 from './Child1';
-import Child2 from './Child2';
 
 function Todo() {
 	// const todoData = useContext(TodoContext);
 	// console.log(todoData);
 
 	const {
-		todoItem: { todo },
+		todoItem: { todo, isCompleted },
         index,
-        handleDelete
+        handleDelete,
+        handleDone
 	} = useContext(TodoContext);
 
 	return (
 		<div>
-			<span>{todo}</span>
-			<button>Done</button>
+			<span style={{ textDecoration: isCompleted && 'line-through'}}>{todo}</span>
+			<button onClick={() => handleDone(index)}>Done</button>
 			<button onClick={() => handleDelete(index)}>Delete</button>
 		</div>
 	);
