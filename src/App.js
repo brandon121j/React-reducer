@@ -10,7 +10,9 @@ function reducer(state, action) {
 		case 'decrement':
 			return { count: state.count - 1 };
     case 'reset':
-      return { count: 0 }
+      return { count: 0 };
+    case 'x5':
+      return { count: state.count * 5 };
 		default:
 			throw new Error();
 	}
@@ -23,6 +25,7 @@ function App() {
     Count: {state.count}
     <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
     <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+    <button onClick={() => dispatch({ type: 'x5' })}>X5</button>
     <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
   </div>
   )
