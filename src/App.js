@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import TodoInput from './todo/TodoInput';
-import { TodoInputContext } from './context/todoContext';
+import Todo from './todo/Todo';
+import { TodoInputContext, TodoContext } from './context/todoContext';
 import './App.css';
 
 let tempTodoArray = [
@@ -34,9 +35,20 @@ function App() {
     )
   }
 
+  function showTodo() {
+    return todoArray.map((item, index) => {
+      return (
+      <TodoContext.Provider key={ item.id } value={{ todoItem: item }}>
+        <Todo/>
+      </TodoContext.Provider>
+      )
+    })
+  }
+
 	return (
   <div className="App">
     {showTodoInput()}
+    {showTodo()}
   </div>
   )
 }
