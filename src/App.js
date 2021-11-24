@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { SearchContext, MovieContext } from './context/movieContext';
-
-
 import MovieData from './components/movieData/MovieData';
 import Search from './components/search/Search';
-
 import './App.css';
 
 
@@ -18,7 +15,7 @@ function App() {
   async function handleSearchChange(inputValue) {
     setSearchValue(inputValue);
 
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${api}&s=${inputValue}&type=movie`);
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${api}&s=${inputValue}`);
 
     const data = await response.json();
 
@@ -28,7 +25,13 @@ function App() {
     setSearching(true)
   }
 
+  function handleMovieSelected(movieSelected) {
+    setMovieSelected(movieSelected);
+    setSearching(false);
+  }
+
   const searchContextValue = {
+    handleMovieSelected,
     handleSearchChange,
     title: searchValue,
     results,
@@ -40,7 +43,7 @@ function App() {
     <SearchContext.Provider value={searchContextValue}>
       <Search />
     </SearchContext.Provider>
-    <MovieContext.Provider value={{}}>
+    <MovieContext.Provider value={movieSelected}>
       <MovieData />
     </MovieContext.Provider>
   </div>
