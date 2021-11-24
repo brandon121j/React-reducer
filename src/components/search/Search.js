@@ -2,8 +2,11 @@ import React from 'react'
 
 function Search() {
     return (
-        <div>
-            
+        <div className='search'>
+            <input
+            type='search'
+            name='movie-search'
+            />
         </div>
     )
 }
